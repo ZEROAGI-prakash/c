@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct node *new_node;
+struct node *start = NULL,*connect = NULL;
+
 struct node
 {
     int data;
-    int *next;
-    int *back;
+    struct node *next;
+    struct node *back;
 };
 
-struct node create_node(){
-    struct node *new_node;
-    struct node *start = NULL,*connect = NULL;
+void create_node(){
     new_node = (struct node*) malloc(sizeof(struct node));
     printf("enter data: ");
     scanf("%d",&new_node->data);
@@ -25,10 +26,18 @@ struct node create_node(){
         connect->next = new_node;
         connect = new_node; 
     }
+};
 
-    
-    
+void display(){
+    struct node *dis=NULL;
+    dis = start;
+    while(dis!=NULL){
+        printf("%d",dis->data);
+        dis = dis->next;
+    };
 }
-int main(){
 
+int main(){
+    create_node();
+    display();
 }
